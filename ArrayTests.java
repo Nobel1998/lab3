@@ -29,4 +29,12 @@ public class ArrayTests {
     assertArrayEquals(new int[] { 4, 3, 2, 1, 0}, ArrayExamples.reversed(input1));
   }
 
+  @Test
+  public void testAverageWithoutLowestMultipleLowestValues() {
+    double[] inputArray = {2.0, 3.0, 4.0, 2.0, 2.0};
+    double expectedAverage = (3.0 + 4.0) / 2; // Excluding all 2.0 values, then dividing by 2 (length of array minus count of lowest value)
+    assertEquals(expectedAverage, ArrayExamples.averageWithoutLowest(inputArray), 0.001); // The third parameter is a delta for floating-point comparisons
+}
+
+
 }
