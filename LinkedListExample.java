@@ -47,8 +47,10 @@ class LinkedList {
      * @return the value of the first element in the list
      */
     public int first() {
+        if (this.root == null) {throw new NoSuchElementException();} 
         return this.root.value;
     }
+
     /**
      * @return the value of the last element in the list
      */

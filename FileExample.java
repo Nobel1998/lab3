@@ -38,18 +38,25 @@ public class FileExample {
 
   */
 
-	static List<File> getFiles(File start) throws IOException {
-	  File f = start;
-	  List<File> result = new ArrayList<>();
-	  result.add(start);
-	  if(f.isDirectory()) {
-	    File[] paths = f.listFiles();
-	    for(File subFile: paths) {
-	      result.add(subFile);
-	    }
-	  }
-	  return result;
-	}
+static List<File> getFiles(File start) throws IOException {
+    List<File> result = new ArrayList<>();
+
+    // Check if the File object represents a directory
+    if (start.isDirectory()) {
+        File[] paths = start.listFiles();
+        if (paths != null) {  // Ensure that listFiles() did not return null
+            for (File subFile : paths) {
+                result.addAll(getFiles(subFile));  // Recursively get files from sub-directories
+            }
+        }
+    } else {
+        // If it's a regular file, just add it to the result list
+        result.add(start);
+    }
+
+    return result;
 }
+}
+
 
 
